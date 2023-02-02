@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addExpenses, fetchAPI } from '../redux/actions';
+import { fetchAPI, requestAPI, submitForm } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -10,6 +10,7 @@ class WalletForm extends Component {
     method: 'Dinheiro',
     tag: 'Alimentação',
     description: '',
+    id: 0,
   };
 
   componentDidMount() {
@@ -23,9 +24,36 @@ class WalletForm extends Component {
     });
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     const { dispatch } = this.props;
-    dispatch(addExpenses(this.state));
+
+    this.setState((prev) => ({
+      id: prev.id + 1,
+      value: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      description: '',
+    }));
+    const {
+      id,
+      value,
+      description,
+      currency,
+      method,
+      tag,
+    } = this.state;
+    const exchangeRates = await requestAPI();
+    const obj = {
+      id,
+      value,
+      description,
+      currency,
+      method,
+      tag,
+      exchangeRates,
+    };
+    dispatch(submitForm(obj));
   };
 
   render() {

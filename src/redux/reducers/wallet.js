@@ -1,4 +1,4 @@
-import { WALLET_CURRENCIES, ADD_EXPENSES } from '../actions';
+import { WALLET_CURRENCIES, ADD_EXPENSES, SUBMIT_FORM } from '../actions';
 
 const STATE_INICIAL = {
 
@@ -7,6 +7,7 @@ const STATE_INICIAL = {
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   isLoading: false,
+  total: 0,
 
 };
 
@@ -25,6 +26,8 @@ function user(state = STATE_INICIAL, action) {
       expenses: [...state.expenses, action.payload],
 
     };
+  case SUBMIT_FORM:
+    return { ...state, expenses: [...state.expenses, action.payload] };
 
   default:
     return state;
