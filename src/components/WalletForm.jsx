@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchAPI } from '../redux/actions';
 
 class WalletForm extends Component {
@@ -10,10 +11,8 @@ class WalletForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    console.log(currencies);
     return (
       <form>
-        <p>Oi</p>
         <input type="text" data-testid="value-input" />
         <input type="text" data-testid="description-input" />
         <select name="" id="" data-testid="currency-input">
