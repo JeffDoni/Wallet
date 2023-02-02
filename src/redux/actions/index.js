@@ -1,6 +1,7 @@
 export const USER = 'USER';
 export const WALLET_CURRENCIES = 'WALLET_CURRENCIES';
 export const REQUEST_API = 'REQUEST_API';
+export const ADD_EXPENSES = 'ADD_EXPENSES';
 
 export const actionUser = (email) => (
   {
@@ -10,6 +11,7 @@ export const actionUser = (email) => (
 );
 
 // export const requestAPI = () => ({ type: REQUEST_API });
+export const addExpenses = (value) => ({ type: ADD_EXPENSES, payload: value });
 
 export const getCurrencies = (data) => ({ type: WALLET_CURRENCIES, payload: data });
 
