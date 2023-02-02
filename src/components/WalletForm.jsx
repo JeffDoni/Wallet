@@ -12,15 +12,23 @@ class WalletForm extends Component {
   render() {
     const { currencies } = this.props;
     return (
-      <form>
-        <input type="text" data-testid="value-input" />
-        <input type="text" data-testid="description-input" />
-        <select name="" id="" data-testid="currency-input">
-          {currencies.map((e, index) => (
-            <option value={ e } key={ index }>{e}</option>
-          ))}
-        </select>
-      </form>
+      <div>
+        <form>
+          <label htmlFor="valor">
+            {' '}
+            Valor
+            <input type="text" data-testid="value-input" name="valor" />
+          </label>
+
+          <input type="text" data-testid="description-input" />
+          <select name="" id="" data-testid="currency-input">
+            {currencies.map((e, index) => (
+              <option value={ e } key={ index }>{e}</option>
+            ))}
+          </select>
+        </form>
+        <button>Adicionar despesa</button>
+      </div>
     );
   }
 }
