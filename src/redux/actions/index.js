@@ -4,6 +4,8 @@ export const REQUEST_API = 'REQUEST_API';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
 export const DELETE = 'DELETE';
+export const EDITE = 'EDITE';
+export const EDITESUMBIT = ' EDITESUBMIT';
 
 export const actionUser = (email) => (
   {
@@ -14,6 +16,9 @@ export const actionUser = (email) => (
 
 // export const requestAPI = () => ({ type: REQUEST_API });
 export const addExpenses = (value) => ({ type: ADD_EXPENSES, payload: value });
+
+export const editExpenses = (list) => ({ type: EDITE, payload: list });
+export const submitEdit = (id) => ({ type: EDITESUMBIT, payload: id });
 
 export const getCurrencies = (data) => ({ type: WALLET_CURRENCIES, payload: data });
 

@@ -1,4 +1,4 @@
-import { WALLET_CURRENCIES, SUBMIT_FORM, DELETE } from '../actions';
+import { WALLET_CURRENCIES, SUBMIT_FORM, DELETE, EDITE } from '../actions';
 
 const STATE_INICIAL = {
 
@@ -6,7 +6,7 @@ const STATE_INICIAL = {
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
-  isLoading: false,
+  edit: {},
   total: 0,
 
 };
@@ -24,6 +24,8 @@ function user(state = STATE_INICIAL, action) {
     return { ...state, expenses: [...state.expenses, action.payload] };
   case DELETE:
     return { ...state, expenses: action.payload };
+  case EDITE:
+    return { ...state, idToEdit: payload.id, edit: payload, editor: true };
 
   default:
     return state;
