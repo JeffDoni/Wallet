@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   state = {
-    total: 0,
+    total: 0.00,
   };
 
   calculate = () => {
@@ -26,7 +26,7 @@ class Header extends Component {
         <span
           data-testid="total-field"
         >
-          {this.calculate() ? this.calculate().toFixed(2) : total}
+          {this.calculate() ? this.calculate().toFixed(2) : total.toFixed(2)}
 
         </span>
         <p data-testid="header-currency-field">BRL</p>

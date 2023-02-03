@@ -1,4 +1,4 @@
-import { WALLET_CURRENCIES, SUBMIT_FORM } from '../actions';
+import { WALLET_CURRENCIES, SUBMIT_FORM, DELETE } from '../actions';
 
 const STATE_INICIAL = {
 
@@ -22,6 +22,8 @@ function user(state = STATE_INICIAL, action) {
     };
   case SUBMIT_FORM:
     return { ...state, expenses: [...state.expenses, action.payload] };
+  case DELETE:
+    return { ...state, expenses: action.payload };
 
   default:
     return state;

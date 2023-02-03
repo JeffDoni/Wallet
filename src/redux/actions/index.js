@@ -3,6 +3,7 @@ export const WALLET_CURRENCIES = 'WALLET_CURRENCIES';
 export const REQUEST_API = 'REQUEST_API';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const DELETE = 'DELETE';
 
 export const actionUser = (email) => (
   {
@@ -21,6 +22,10 @@ export const submitForm = (obj) => ({
   payload: obj,
 });
 
+export const deleteExpense = (param) => ({
+  type: DELETE,
+  payload: param,
+});
 export const requestAPI = async () => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const data = await response.json();
