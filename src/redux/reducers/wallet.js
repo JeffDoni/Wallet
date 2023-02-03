@@ -1,4 +1,4 @@
-import { WALLET_CURRENCIES, ADD_EXPENSES, SUBMIT_FORM } from '../actions';
+import { WALLET_CURRENCIES, SUBMIT_FORM } from '../actions';
 
 const STATE_INICIAL = {
 
@@ -18,12 +18,6 @@ function user(state = STATE_INICIAL, action) {
     return {
       ...state,
       currencies: Object.keys(action.payload),
-
-    };
-  case ADD_EXPENSES:
-    return {
-      ...state,
-      expenses: [...state.expenses, action.payload],
 
     };
   case SUBMIT_FORM:
