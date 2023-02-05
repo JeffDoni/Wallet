@@ -10,9 +10,10 @@ class Table extends Component {
     dispatch(deleteExpense(deleteId));
   };
 
-  handleEdite = ({ target: { name } }) => {
+  handleEdite = (id) => {
     const { dispatch } = this.props;
-    dispatch(editExpenses(Number(name)));
+    dispatch(editExpenses(id));
+    console.log(id);
   };
 
   render() {
@@ -39,9 +40,10 @@ class Table extends Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody>
-            { expenses && expenses.map((expense) => (
-              <tr key={ expense.id }>
+
+          { expenses && expenses.map((expense) => (
+            <tbody key={ expense.id }>
+              <tr>
                 <td>{expense.description}</td>
                 <td>{expense.tag}</td>
                 <td>{expense.method}</td>
@@ -57,7 +59,7 @@ class Table extends Component {
                 <td>
                   <button
                     data-testid="edit-btn"
-                    onClick={ this.handleEdite }
+                    onClick={ () => this.handleEdite(expense.id) }
                     type="button"
                   >
                     Editar
@@ -74,8 +76,9 @@ class Table extends Component {
                 </td>
 
               </tr>
-            ))}
-          </tbody>
+            </tbody>
+          ))}
+
         </table>
       </div>
     );
@@ -87,7 +90,6 @@ Table.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => ({
-  currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
 });
 

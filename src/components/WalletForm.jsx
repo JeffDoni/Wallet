@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchAPI, requestAPI, submitForm } from '../redux/actions';
+import { fetchAPI, requestAPI, submitEdit, submitForm } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -17,6 +17,20 @@ class WalletForm extends Component {
     const { dispatch } = this.props;
     dispatch(fetchAPI());
   }
+
+  editeForm = async () => {
+    const { dispatch } = this.props;
+    console.log('oi');
+    const { value, currency, method, tag, description } = this.state;
+    const obj = {
+      value,
+      description,
+      currency,
+      method,
+      tag,
+    };
+    dispatch(submitEdit({ obj }));
+  };
 
   handleChange = ({ target: { value, name } }) => {
     this.setState({
@@ -56,9 +70,17 @@ class WalletForm extends Component {
     dispatch(submitForm(obj));
   };
 
+  handleExpense = () => {
+    const { editor } = this.props;
+    if (editor) {
+      return this.editeForm();
+    }
+    return this.handleClick();
+  };
+
   render() {
     const { value, currency, method, tag, description } = this.state;
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     return (
       <div>
         <form>
@@ -119,13 +141,20 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </form>
-        <button onClick={ this.handleClick } type="button">Adicionar despesa</button>
+        <button
+          onClick={ this.handleExpense }
+          type="button"
+        >
+          { editor ? 'Editar despesa' : 'Adicionar despesa'}
+
+        </button>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
+  editor: state.wallet.editor,
   currencies: state.wallet.currencies,
   expenses: {
     value: state.wallet.expenses.value,
@@ -138,7 +167,8 @@ const mapStateToProps = (state) => ({
 });
 
 WalletForm.propTypes = {
-  currencies: PropTypes.arrayOf.isRequired,
+  editor: PropTypes.bool.isRequired,
+  currencies: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

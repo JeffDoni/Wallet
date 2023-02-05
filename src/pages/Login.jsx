@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actionUser } from '../redux/actions';
+import logo from '../images/logo.png';
+import '../styles/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -37,7 +39,8 @@ class Login extends React.Component {
     const { email, senha, disableBtn } = this.state;
 
     return (
-      <div>
+      <form>
+        <img src={ logo } alt="logo" className="logo" />
         <label htmlFor="email">
           {' '}
           Email
@@ -69,7 +72,7 @@ class Login extends React.Component {
           Entrar
 
         </button>
-      </div>
+      </form>
     );
   }
 }
