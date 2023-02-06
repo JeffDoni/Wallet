@@ -3,9 +3,11 @@ body {
   background-color: #2fc18c;
   background-image: url('./images/foto\ fundo.png');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   display: flex;
+  height: 100vh;
   justify-content: center;
+  width: 100vw;
 
 }
 

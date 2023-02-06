@@ -1,12 +1,31 @@
-form {
+.login {
+  align-items: center;
   background-color: white;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  gap: 2rem;
+  height: 40vh;
+  justify-content: center;
   width: 30vw;
 }
 
 .logo {
   width: 50%;
 }
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.container-login button {
+  background-color: blue;
+  color: white;
+}
+
+.container-login input {
+  width: 100%;
+}
+
