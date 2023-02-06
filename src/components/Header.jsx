@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import logo from '../images/logo.png';
 
 class Header extends Component {
   state = {
@@ -23,18 +22,14 @@ class Header extends Component {
     const { total } = this.state;
     return (
       <header>
-        <img src={ logo } alt="logo-header" />
-        <div className="moeda">
-          <span>Total de despesas:</span>
-          <span
-            data-testid="total-field"
-          >
-            {this.calculate() ? this.calculate().toFixed(2) : total.toFixed(2)}
-
-          </span>
-          <p data-testid="header-currency-field">BRL</p>
-        </div>
         <p data-testid="email-field">{email}</p>
+        <span
+          data-testid="total-field"
+        >
+          {this.calculate() ? this.calculate().toFixed(2) : total.toFixed(2)}
+
+        </span>
+        <p data-testid="header-currency-field">BRL</p>
       </header>
     );
   }

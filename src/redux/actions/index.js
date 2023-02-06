@@ -1,11 +1,11 @@
 export const USER = 'USER';
 export const WALLET_CURRENCIES = 'WALLET_CURRENCIES';
-export const REQUEST_EDIT = 'REQUEST_EDIT';
+export const REQUEST_API = 'REQUEST_API';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
 export const DELETE = 'DELETE';
-export const EDITE = 'EDITE';
-export const EDITESUMBIT = ' EDITESUBMIT';
+export const EDIT = 'EDIT';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const actionUser = (email) => (
   {
@@ -14,17 +14,17 @@ export const actionUser = (email) => (
   }
 );
 
-export const edit = () => ({ type: REQUEST_EDIT });
+// export const requestAPI = () => ({ type: REQUEST_API });
 export const addExpenses = (value) => ({ type: ADD_EXPENSES, payload: value });
 
-export const editExpenses = (id) => ({ type: EDITE, payload: id });
-export const submitEdit = (id) => ({ type: EDITESUMBIT, payload: id });
+export const editExpenses = (payload) => ({ type: EDIT_EXPENSE, payload });
+export const edit = (payload) => ({ type: EDIT, payload });
 
 export const getCurrencies = (data) => ({ type: WALLET_CURRENCIES, payload: data });
 
-export const submitForm = (obj) => ({
+export const submitForm = (payload) => ({
   type: SUBMIT_FORM,
-  payload: obj,
+  payload,
 });
 
 export const deleteExpense = (param) => ({
@@ -34,7 +34,6 @@ export const deleteExpense = (param) => ({
 export const requestAPI = async () => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const data = await response.json();
-  delete data.USDT;
   return data;
 };
 

@@ -1,4 +1,4 @@
-import { WALLET_CURRENCIES, SUBMIT_FORM, DELETE, EDITE, EDITESUMBIT } from '../actions';
+import { WALLET_CURRENCIES, SUBMIT_FORM, DELETE, EDIT, EDIT_EXPENSE } from '../actions';
 
 const STATE_INICIAL = {
 
@@ -6,15 +6,16 @@ const STATE_INICIAL = {
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
-  edit: {},
+  isLoading: false,
   total: 0,
-  toEdit: false,
+  edit: {},
 
 };
 
 function user(state = STATE_INICIAL, action) {
   switch (action.type) {
   case WALLET_CURRENCIES:
+    delete action.payload.USDT;
     return {
       ...state,
       currencies: Object.keys(action.payload),
@@ -24,24 +25,14 @@ function user(state = STATE_INICIAL, action) {
     return { ...state, expenses: [...state.expenses, action.payload] };
   case DELETE:
     return { ...state, expenses: action.payload };
-  case EDITE:
-    return { ...state, idToEdit: action.payload, editor: true };
-  case EDITESUMBIT:
+  case EDIT:
+    return { ...state, editor: true, idToEdit: action.payload.id, edit: action.payload };
+  case EDIT_EXPENSE:
     return {
       ...state,
-      expenses: state.expenses.reduce((acc, curr) => {
-        if ((curr.id === state.idToEdit)) {
-          return [...acc, { ...curr, ...action.payload.obj }];
-        }
-        return [...acc, curr];
-      }, []),
-      // expenses: state.expenses
-      //   .map((e) => {
-      //     if (e.id === state.idToEdit) {
-      //       return { ...e, ...action.payload.obj };
-      //     } return e;
-      //   }),
-
+      expenses: state.expenses
+        .map((e) => (e.id === state.idToEdit ? { ...action.payload } : e)),
+      idToEdit: 0,
       editor: false,
 
     };

@@ -14,8 +14,8 @@ const PASSWORD_INPUT = 'password-input';
 describe('Teste o Login', () => {
   it('Teste se existe um input para email e senha e um botao para acessar', () => {
     renderWithRouterAndRedux(<App />);
-    const email = screen.getByText(/email/i);
-    const senha = screen.getByText(/senha/i);
+    const email = screen.getByTestId(EMAIL_INPUT);
+    const senha = screen.getByTestId(PASSWORD_INPUT);
     const btn = screen.getByRole('button', { name: /entrar/i });
     expect(email).toBeInTheDocument();
     expect(senha).toBeInTheDocument();
@@ -29,8 +29,8 @@ describe('Teste o Login', () => {
   it('o botão enviar só é ativado quando o e-mail e as senhas são válidos', () => {
     renderWithRouterAndRedux(<App />);
     const btn = screen.getByRole('button', { name: /entrar/i });
-    const email = screen.getByText(/email/i);
-    const password = screen.getByText(/senha/i);
+    const email = screen.getByTestId(EMAIL_INPUT);
+    const password = screen.getByTestId(PASSWORD_INPUT);
     userEvent.type(email, INVALID_EMAIL);
     userEvent.type(password, INVALID_PASSWORD);
     expect(btn).toBeDisabled();

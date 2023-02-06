@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actionUser } from '../redux/actions';
-import logo from '../images/logo.png';
-import '../styles/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -39,42 +37,29 @@ class Login extends React.Component {
     const { email, senha, disableBtn } = this.state;
 
     return (
-      <form className="login">
-        <img src={ logo } alt="logo" className="logo" />
-        <fieldset className="container-login">
-          <label htmlFor="email">
-            {' '}
-            <input
-              type="email"
-              data-testid="email-input"
-              value={ email }
-              onChange={ this.handleChange }
-              name="email"
-              id="email"
-              placeholder="E-mail"
-            />
-          </label>
-          <label htmlFor="senha">
-            {' '}
-            <input
-              type="password"
-              data-testid="password-input"
-              onChange={ this.handleChange }
-              value={ senha }
-              name="senha"
-              id="senha"
-              placeholder="Senha"
-            />
-          </label>
-          <button
-            onClick={ this.handleClick }
-            disabled={ disableBtn }
-          >
-            Entrar
+      <div>
+        <input
+          type="email"
+          data-testid="email-input"
+          value={ email }
+          onChange={ this.handleChange }
+          name="email"
+        />
+        <input
+          type="password"
+          data-testid="password-input"
+          onChange={ this.handleChange }
+          value={ senha }
+          name="senha"
+        />
+        <button
+          onClick={ this.handleClick }
+          disabled={ disableBtn }
+        >
+          Entrar
 
-          </button>
-        </fieldset>
-      </form>
+        </button>
+      </div>
     );
   }
 }

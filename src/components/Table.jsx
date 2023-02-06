@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense, editExpenses } from '../redux/actions';
+import { deleteExpense, edit } from '../redux/actions';
 
 class Table extends Component {
   handleClick = (param) => {
@@ -10,10 +10,9 @@ class Table extends Component {
     dispatch(deleteExpense(deleteId));
   };
 
-  handleEdite = (id) => {
+  editID = (obj) => {
     const { dispatch } = this.props;
-    dispatch(editExpenses(id));
-    console.log(id);
+    dispatch(edit(obj));
   };
 
   render() {
@@ -40,10 +39,9 @@ class Table extends Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-
-          { expenses && expenses.map((expense) => (
-            <tbody key={ expense.id }>
-              <tr>
+          <tbody>
+            { expenses && expenses.map((expense) => (
+              <tr key={ expense.id }>
                 <td>{expense.description}</td>
                 <td>{expense.tag}</td>
                 <td>{expense.method}</td>
@@ -57,13 +55,8 @@ class Table extends Component {
                 </td>
                 <td>Real</td>
                 <td>
-                  <button
-                    data-testid="edit-btn"
-                    onClick={ () => this.handleEdite(expense.id) }
-                    type="button"
-                  >
+                  <button data-testid="edit-btn" onClick={ () => this.editID(expense) }>
                     Editar
-
                   </button>
                   <button
                     onClick={ () => this.handleClick(expense.id) }
@@ -76,9 +69,8 @@ class Table extends Component {
                 </td>
 
               </tr>
-            </tbody>
-          ))}
-
+            ))}
+          </tbody>
         </table>
       </div>
     );
@@ -86,7 +78,6 @@ class Table extends Component {
 }
 Table.propTypes = {
   expenses: PropTypes.arrayOf,
-  dispatch: PropTypes.func.isRequired,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
