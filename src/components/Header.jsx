@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaCoins, FaUserCircle } from 'react-icons/fa';
+import logo from '../images/logo.png';
 
 class Header extends Component {
   state = {
@@ -22,14 +24,25 @@ class Header extends Component {
     const { total } = this.state;
     return (
       <header>
-        <p data-testid="email-field">{email}</p>
-        <span
-          data-testid="total-field"
-        >
-          {this.calculate() ? this.calculate().toFixed(2) : total.toFixed(2)}
+        <img src={ logo } alt="logo-header" className="logo-header" />
 
-        </span>
-        <p data-testid="header-currency-field">BRL</p>
+        <div className="moeda">
+          <FaCoins />
+          <span>
+            Total de despesas:
+          </span>
+          <span
+            data-testid="total-field"
+          >
+            {this.calculate() ? this.calculate().toFixed(2) : total.toFixed(2)}
+
+          </span>
+          <p data-testid="header-currency-field">BRL</p>
+        </div>
+        <div className="user">
+          <FaUserCircle />
+          <spam data-testid="email-field">{email}</spam>
+        </div>
       </header>
     );
   }

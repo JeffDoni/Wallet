@@ -1,0 +1,42 @@
+.login {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 40vh;
+  justify-content: center;
+  width: 30vw;
+}
+
+.logo {
+  width: 40%;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 30%;
+  justify-content: center;
+  width: 50%;
+}
+
+
+.container-login input {
+  height: 2rem;
+  width: 98%;
+}
+
+.enableBtn {
+  background-color: blue;
+  color: white;
+  width: 100%;
+}
+
+.disableBtn {
+  background-color: white;
+  color: grey;
+  height: 2rem;
+  width: 100%;
+}
