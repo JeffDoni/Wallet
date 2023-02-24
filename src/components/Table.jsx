@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteExpense, edit } from '../redux/actions';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BsPencilSquare } from 'react-icons/bs';
 
 class Table extends Component {
   handleClick = (param) => {
@@ -56,14 +58,14 @@ class Table extends Component {
                 <td>Real</td>
                 <td>
                   <button data-testid="edit-btn" onClick={ () => this.editID(expense) }>
-                    Editar
+                    <BsPencilSquare/>
                   </button>
                   <button
                     onClick={ () => this.handleClick(expense.id) }
                     type="button"
                     data-testid="delete-btn"
                   >
-                    Excluir
+                    <AiOutlineDelete/>
 
                   </button>
                 </td>

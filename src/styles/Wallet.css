@@ -60,6 +60,7 @@ header {
 
 .logo-header {
   width: 30%;
+  height: 50%;
 }
 
 .user {
@@ -113,7 +114,7 @@ header {
 }
 
 table {
-  border: 1px solid #2fc18c;
+
   color: white;
   display: flex;
   flex-direction: column;
@@ -161,5 +162,12 @@ td {
 select {
   font-size: 1.5rem;
   height: 2rem;
+}
+
+table button {
+  background-color: #003be5;
+  width: 20%;
+  border: #2fc18c;
+  font-size: large;
 }
 
